@@ -18,6 +18,8 @@ def b_smooth(given):
   return len(not_smooth) == 0
 
 def build_relations(z):
+  #multiply together these various relations in such a way that the exponents of the primes are all even
+  # first check to see if any of the vectors are in the state that we want (where all of the exponents are even)
   pass
 
 def gcd(primes):
@@ -27,7 +29,7 @@ z = []
 for i in range(2, n):
   given = i
   if b_smooth(i) and b_smooth(i+n):
-    z.append({i: p_factors(i)})
+    z.append({"z": {i: p_factors(i)}, "zn": {i+n: p_factors(i+n) } })
 
 relations = build_relations(z)
 
