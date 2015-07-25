@@ -26,7 +26,7 @@ z = []
 for i in range(2, n):
   given = i
   if b_smooth(i):
-    if b_smooth(i+1):
+    if b_smooth(i+n):
       z.append(i)
 
 print "z %s" % z
