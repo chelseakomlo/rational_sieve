@@ -11,21 +11,23 @@ factor_base = [2, 3, 5, 7] # primes less than chosen bound
 
 # find positive integers z, where z is a number whose prime factors are in the factor_base
 
-z = []
-# go through and calculate z numbers whom all of their prime factors are in the factor_base
-
-for i in range(2, n):
-  given = i
+def b_smooth(given):
   factors = []
   for prime in PRIMES:
     if given % prime == 0:
       factors.append(prime)
       given //= prime
 
-  print "factors %s" % factors
-  not_in_z = [factor for factor in factors if factor not in factor_base]
-  if (len(not_in_z) == 0): z.append(i) 
-  print "counter %s" % i
+  not_in_factor_base = [factor for factor in factors if factor not in factor_base]
+  return len(not_in_factor_base) == 0
+
+z = []
+
+for i in range(2, n):
+  given = i
+  if b_smooth(i):
+    if b_smooth(i+1):
+      z.append(i)
 
 print "z %s" % z
 
