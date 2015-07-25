@@ -17,10 +17,16 @@ def b_smooth(given):
   not_smooth = [factor for factor in factors if factor not in factor_base]
   return len(not_smooth) == 0
 
+def even(given):
+  factors = given.values()[0]
+  for number in factors: 
+    if (factors.count(number) % 2 != 0): return False
+  return True 
+
 def build_relations(z):
   #multiply together these various relations in such a way that the exponents of the primes are all even
   # first check to see if any of the vectors are in the state that we want (where all of the exponents are even)
-  pass
+  return [vector for vector in z if (even(vector["z"]) and even(vector["zn"]))]
 
 def gcd(primes):
   pass
@@ -33,6 +39,6 @@ for i in range(2, n):
 
 relations = build_relations(z)
 
-print "z %s" % z
+print "z %s" % relations
 
 
