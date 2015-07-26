@@ -9,5 +9,7 @@ Step 2:
  This gives us a congruence of squares of the form a2 ≡ b2 (mod N), which can be turned into a factorization of N 
 
 source1: https://en.wikipedia.org/wiki/Rational_sieve
+<br>
 source2: http://sjbyrnes.com/math129-finalpaper.pdf
+<br>
 source3: https://en.wikipedia.org/wiki/Dixon%27s_factorization_method
