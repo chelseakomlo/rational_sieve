@@ -27,7 +27,7 @@ def even(given):
   return True 
 
 def build_relations(z):
-  # first check to see if any of the vectors are already in the desired state (where all of the exponents are even)
+  # first check to see if any of the vectors are already in the desired state
   return [vector for vector in z if (even(vector["z"]) and even(vector["zn"]))]
 
 def get_gcd(primes_v, primes_vn):
