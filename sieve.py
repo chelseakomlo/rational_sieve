@@ -26,29 +26,9 @@ def even(given):
     if (factors.count(number) % 2 != 0): return False
   return True 
 
-def build_squares(prime, z_vector, zn_vector):
-  is_odd = z_vector.count(prime) % 2 != 0
-  if is_odd:
-    z_vector.append(prime)
-    zn_vector.append(prime)
-  return {"z": {1: z_vector}, "zn": {1: zn_vector}}
-
-def build_even(z):
-  evens = []
-  for vector in z:
-    z_vector_prime_factors = vector["z"].values()[0]
-    zn_vector_prime_factors = vector["zn"].values()[0]
-    uniques = list(set(z_vector_prime_factors))
-    for prime in uniques:
-      evens.append(build_squares(prime, z_vector_prime_factors, zn_vector_prime_factors))
-  return evens
-
 def build_relations(z):
-  evens = []
-  [evens.append(vector) for vector in z if (even(vector["z"]) and even(vector["zn"]))]
-  vectors_to_manipulate = [ vector for vector in z if not even(vector["z"]) ] 
-  [evens.append(vector) for vector in build_even(vectors_to_manipulate) ]
-  return evens
+  # first check to see if any of the vectors are already in the desired state
+  return [vector for vector in z if (even(vector["z"]) and even(vector["zn"]))]
 
 def get_gcd(primes_v, primes_vn):
   v = reduce(lambda x,y:x*y, list(set(primes_v)))
@@ -63,8 +43,7 @@ for i in range(2, n):
 
 relations = build_relations(z)
 
-for relation in relations: 
-  print "factorization of %s is %s" % (n, get_gcd(relation["z"].values()[0], relation["zn"].values()[0]))
+print "factorization of %s is %s" % (n, get_gcd(relations[0]["z"].values()[0], relations[0]["zn"].values()[0]))
 
 
 
