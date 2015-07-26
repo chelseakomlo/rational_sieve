@@ -1,3 +1,6 @@
+from fractions import gcd
+import operator
+import functools
 
 n = 187
 bound = 7 # chosen aribitrarily
@@ -24,12 +27,13 @@ def even(given):
   return True 
 
 def build_relations(z):
-  #multiply together these various relations in such a way that the exponents of the primes are all even
-  # first check to see if any of the vectors are in the state that we want (where all of the exponents are even)
+  # first check to see if any of the vectors are already in the desired state (where all of the exponents are even)
   return [vector for vector in z if (even(vector["z"]) and even(vector["zn"]))]
 
-def gcd(primes):
-  pass
+def get_gcd(primes_v, primes_vn):
+  v = reduce(lambda x,y:x*y, list(set(primes_v)))
+  vn = reduce(lambda x,y:x*y, list(set(primes_vn)))
+  return [gcd((vn-v), n), gcd((vn+v), n)] 
 
 z = []
 for i in range(2, n):
@@ -39,6 +43,7 @@ for i in range(2, n):
 
 relations = build_relations(z)
 
-print "z %s" % relations
+print "factorization of %s is %s" % (n, get_gcd(relations[0]["z"].values()[0], relations[0]["zn"].values()[0]))
+
 
 
