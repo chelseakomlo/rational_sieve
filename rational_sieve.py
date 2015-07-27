@@ -22,6 +22,12 @@ class Sieve():
         relation = {"z": self.pfactor(i), "zn": self.pfactor(i+self.n)}
         self.relations.append(relation)
 
+  def even(self, factors):
+    for unique in set(factors):
+      if (factors.count(unique) % 2) != 0: return False
+    return True
+
   def _b_smooth(self, given):
    factors = self.pfactor(given) + self.pfactor(given + self.n) 
    return max(factors) in self.factor_base
+
