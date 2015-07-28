@@ -9,12 +9,20 @@ class Sieve():
     self.factor_base = factor_base
     self.cache = {}
 
+  def get_factors(self):
+    relations = self.build_b_smooth()
+    possible_relations = [relation for relation in relations if self.even(relation["z"])]
+    for relation in possible_relations:
+      gcd = self.get_gcd(relation)
+      print("Potential factorization of %s is %s, %s" % (self.n, gcd[0], gcd[1]))
+
   def build_b_smooth(self): 
-    self.relations = []
+    relations = []
     for i in range(2, self.n): 
       if self._b_smooth(i): 
         relation = {"z": self.pfactors(i), "zn": self.pfactors(i+self.n)}
-        self.relations.append(relation)
+        relations.append(relation)
+    return relations
 
   def even(self, factors):
     for unique in set(factors):
@@ -44,3 +52,7 @@ class Sieve():
    factors = self.pfactors(given) + self.pfactors(given + self.n) 
    return max(factors) in self.factor_base
 
+
+if __name__ == "__main__":
+      sieve = Sieve(187, 11, [2, 3, 5, 7, 11])
+      sieve.get_factors()
