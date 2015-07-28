@@ -33,6 +33,6 @@ class TestRationalSieve():
     assert_true(self.sieve.even(pfactors))
 
   def test_builds_greatest_common_divisor_with_n(self):
-    relation = {"z": [2], "zn": [3, 3, 3, 7]}
+    relation = {"z": [3, 3], "zn": [2, 2, 7, 7]}
     gcd = self.sieve.get_gcd(relation)
     assert_equals(self.n, (gcd[0] * gcd[1]))
