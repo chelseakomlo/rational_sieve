@@ -1,3 +1,5 @@
+from fractions import gcd
+from functools import reduce
 
 class Sieve():
 
@@ -22,6 +24,11 @@ class Sieve():
   def pfactors(self, given):
     if self.cache.get(given): return self.cache[given]
     return self._build_pfactors(given)
+
+  def get_gcd(self, relation):
+    z_pfactrs = reduce(lambda x, y: x*y, relation["z"]) 
+    zn_pfactrs = reduce(lambda x, y: x*y, relation["zn"]) 
+    return (gcd((zn_pfactrs - z_pfactrs), self.n), gcd((zn_pfactrs + z_pfactrs), self.n))
 
   def _build_pfactors(self, given):
     pfactors = []
