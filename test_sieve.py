@@ -19,7 +19,7 @@ class TestRationalSieve():
     assert_equals(1, prime_factors.count(17))
 
   def test_builds_a_list_of_b_smooth_numbers(self):
-    relations = self.sieve.build_b_smooth()
+    relations = self.sieve.build_relations()
     first = relations[0]
     max_pfactor = max(first["z"] + first["zn"])
     assert_true(max_pfactor in self.factor_base)
