@@ -14,7 +14,8 @@ class Sieve():
     possible_relations = [relation for relation in relations if self.even(relation["z"])]
     for relation in possible_relations:
       gcd = self.get_gcd(relation)
-      print("Potential factorization of %s is %s, %s" % (self.n, gcd[0], gcd[1]))
+      if self._is_factorization(gcd):
+        print("Potential factorization of %s is %s, %s" % (self.n, gcd[0], gcd[1]))
 
   def build_b_smooth(self): 
     relations = []
@@ -34,8 +35,8 @@ class Sieve():
     return self._build_pfactors(given)
 
   def get_gcd(self, relation):
-    z_pfactrs = reduce(lambda x, y: x*y, relation["z"]) 
-    zn_pfactrs = reduce(lambda x, y: x*y, relation["zn"]) 
+    z_pfactrs = reduce(lambda x, y: x*y, set(relation["z"])) 
+    zn_pfactrs = reduce(lambda x, y: x*y, set(relation["zn"])) 
     return (gcd((zn_pfactrs - z_pfactrs), self.n), gcd((zn_pfactrs + z_pfactrs), self.n))
 
   def _build_pfactors(self, given):
@@ -52,6 +53,8 @@ class Sieve():
    factors = self.pfactors(given) + self.pfactors(given + self.n) 
    return max(factors) in self.factor_base
 
+  def _is_factorization(self, gcd):
+    return gcd[0] * gcd[1] == self.n
 
 if __name__ == "__main__":
       sieve = Sieve(187, 11, [2, 3, 5, 7, 11])
