@@ -13,13 +13,15 @@ class Sieve():
     possible_r = [r for r in relations if self.even(r["z"])] # next step is to convert non-even relations
     for relation in possible_r:
       gcd = self.get_gcd(relation)
-      if self._factors(gcd): print("Potential factors of %s is %s, %s" % (self.n, gcd[0], gcd[1]))
+      if self.__factors(gcd): print("Potential factors of %s is %s, %s" % (self.n, gcd[0], gcd[1]))
 
+# should return relations that have primes only within the factor base
+# everything else should be thrown away
   def build_relations(self): 
     relations = []
     for i in range(2, self.n): 
       z_factors = self.pfactors(i)
-      if self._b_smooth(z_factors): 
+      if self.__b_smooth(z_factors): 
         zn_factors = self.pfactors(i+self.n)
         relations.append({"z": z_factors, "zn": zn_factors})
     return relations
@@ -43,12 +45,12 @@ class Sieve():
     if given > 1: pfactors.append(given)
     return pfactors
 
-  def _b_smooth(self, pfactr):
+  def __b_smooth(self, pfactr):
    return max(pfactr) in self.factor_base
 
-  def _factors(self, gcd):
+  def __factors(self, gcd):
     return gcd[0] * gcd[1] == self.n
 
 if __name__ == "__main__":
-      sieve = Sieve(187, 11, [2, 3, 5, 7, 11])
+      sieve = Sieve(63, 11, [2, 3, 5, 7])
       sieve.get_factors()

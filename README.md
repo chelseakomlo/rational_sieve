@@ -9,3 +9,8 @@ source1: https://en.wikipedia.org/wiki/Rational_sieve
 source2: http://sjbyrnes.com/math129-finalpaper.pdf
 <br>
 source3: https://en.wikipedia.org/wiki/Dixon%27s_factorization_method
+
+### Todo
+1. Throw away relations that contain factors not within the factor base
+2.Manipulate relations to have even exponents 
+3. Acceptance tests
